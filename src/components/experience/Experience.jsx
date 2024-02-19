@@ -50,7 +50,7 @@ const Experience = () => {
           className="experience__content"
           initial={{ transform: "translateX(130%)" }} // Initial position (off-screen to the right)
           animate={
-            scrollProgress >= (isMobileView ? 19 : 30)
+            scrollProgress >= (isMobileView ? 21 : 30)
               ? { transform: "translateX(0)" }
               : { transform: "translateX(130%)" }
           } // Animation to move from right to left
@@ -77,7 +77,7 @@ const Experience = () => {
           className="experience__content"
           initial={{ transform: "translateX(-130%)" }} // Initial position (off-screen to the left)
           animate={
-            scrollProgress >= (isMobileView ? 23 : 35)
+            scrollProgress >= (isMobileView ? 25 : 35)
               ? { transform: "translateX(0)" }
               : { transform: "translateX(-130%)" }
           } // Animation to move from left to right
