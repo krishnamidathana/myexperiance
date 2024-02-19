@@ -22,7 +22,9 @@ const Intro = () => {
       buttonControls.start({ x: 0 }); // Start animation for button coming from left
     }
     if (inView && ref && ref.current && ref.current.offsetTop) {
-      const scrollPosition = window.scrollY + window.innerHeight;
+      // const scrollPosition = window.scrollY + window.innerHeight;
+      const scrollPosition = window.scrollY + document.documentElement.clientHeight;
+
       const sectionPosition =
         ref.current.offsetTop + ref.current.offsetHeight * 0.6; // Calculate position at 60% of the intro section
       if (scrollPosition > sectionPosition) {
