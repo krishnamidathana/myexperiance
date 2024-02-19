@@ -1,0 +1,111 @@
+.contact__options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center the content horizontally */
+    gap: 1.2rem;
+}
+
+.contact__option {
+    display: flex; /* Use flexbox for the article */
+    flex-direction: column; /* Align items vertically */
+    align-items: center; /* Center items horizontally */
+    background: var(--color-bg-variant);
+    width:16rem;
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.contact__option:hover {
+    background: transparent;
+    border-color: var(--color-primary-variant);
+}
+
+.contact__option-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 0.5rem;
+}
+
+.contact__option a {
+    margin-top: 0.7rem;
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+.contact__option h5 {
+    color: var(--color-light);
+}
+
+.contact__option h4 {
+    font-weight: 500;
+}
+
+form span {
+    font-size: 0.8rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    border: 2px solid var(--color-primary-variant);
+    resize: none;
+    color: var(--color-white);
+}
+
+.contact__option a {
+    margin-top: 0.7rem;
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.contact__option:hover a {
+    background-color: var(--color-primary-variant);
+    color: white;
+}
+
+.contact__option a[href^="mailto:"],
+.contact__option a[href^="https://wa.me/"],
+.contact__option a[href^="https://t.me/"] {
+    color: white;
+}
+
+@keyframes jump {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+  
+  .contact__option:hover .contact__option-icon {
+    animation: jump 0.5s ease  infinite; /* Apply the jump animation */
+  }
+  
+  
+@media screen and (max-width: 600px){
+    
+    .contact__options {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.2rem;
+    }
+    .contact__option {
+        background: var(--color-bg-variant);
+        width:100%;
+}
+}
