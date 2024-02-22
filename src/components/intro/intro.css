@@ -77,6 +77,9 @@
 }
   
 @media screen and (max-width: 600px){
+    section{
+         overflow: hidden;
+    }
     .about__me {
         width: 65%;
         margin: 0rem auto 3rem; 
