@@ -48,13 +48,11 @@ const Experience = () => {
       <div className="container experience__container">
         <motion.div
           className="experience__content"
-          initial={{ transform: "translateX(130%)" }} // Initial position (off-screen to the right)
-          animate={
-            scrollProgress >= (isMobileView ? 21 : 30)
-              ? { transform: "translateX(0)" }
-              : { transform: "translateX(130%)" }
-          } // Animation to move from right to left
-          transition={{ type: "spring", duration: 0.2 }} // Spring animation with default duration
+          initial={{ x: "130%" }}
+          animate={{
+            x: scrollProgress >= (isMobileView ? 23 : 30) ? "0%" : "130%",
+          }}
+          transition={{ type: "spring", stiffness: 600, damping: 20 }}
         >
           {/* Articles for first experience__content */}
           <ArticleDetails
@@ -75,13 +73,11 @@ const Experience = () => {
 
         <motion.div
           className="experience__content"
-          initial={{ transform: "translateX(-130%)" }} // Initial position (off-screen to the left)
-          animate={
-            scrollProgress >= (isMobileView ? 25 : 35)
-              ? { transform: "translateX(0)" }
-              : { transform: "translateX(-130%)" }
-          } // Animation to move from left to right
-          transition={{ type: "spring", duration: 0.2 }} // Spring animation with duration of 1 second
+          initial={{ x: "-130%" }}
+          animate={{
+            x: scrollProgress >= (isMobileView ? 26 : 35) ? "0%" : "-130%",
+          }}
+          transition={{ type: "spring", stiffness: 600, damping: 30 }}
         >
           {/* Articles for second experience__content */}
           <ArticleDetails icon={ScssIcon} alt="SCSS Icon" title="Sass" />
