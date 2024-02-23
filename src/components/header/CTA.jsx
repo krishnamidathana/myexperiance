@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import CV from "../../assets/cv_meri_gogichashvili.pdf";
+import CV from "../../assets/krishnamohan.pdf";
 
 const CTA = () => {
   return (
