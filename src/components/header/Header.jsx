@@ -1,68 +1,43 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion"; // Import motion from Framer Motion
 import CTA from "./CTA";
 import "./header.css";
-import { motion } from "framer-motion";
-import gb from "../../assets/stylized_planet.glb";
-import { useFrame } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { useLoader } from "react-three-fiber";
-import { Canvas } from "react-three-fiber";
-
-const Model = () => {
-  const gltf = useLoader(GLTFLoader, gb); // Define gltf here
-  const modelRef = useRef();
-
-  // Rotate the model continuously
-  useFrame(() => {
-    if (modelRef.current) {
-      modelRef.current.rotation.y += 0.01; // Adjust the rotation speed here
-    }
-  });
-
-  return <primitive object={gltf.scene} scale={[3, 3, 3]} ref={modelRef} />;
-};
+import RocketBoy from "../../assets/rocketboy.png";
 
 const Header = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
+  const [showRocketBoy] = useState(true);
+  const [scrollY, setScrollY] = useState(0);
 
-  const textVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header id="home">
       <div className="container header__container">
         <motion.h1
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
         >
-          {Array.from("Hello,").map((letter, index) => (
-            <motion.span key={index} variants={textVariants}>
-              {letter}
-            </motion.span>
-          ))}
+          Hello,
         </motion.h1>
         <motion.h1
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
         >
-          {Array.from("I'm Krishna ").map((letter, index) => (
-            <motion.span key={index} variants={textVariants}>
-              {letter}
-            </motion.span>
-          ))}
+          I'm Krishna
         </motion.h1>
         <motion.h2
           className="text-light typing-text"
           initial={{ y: 200, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 1, delay: 1 }}
         >
           Front-end Developer
         </motion.h2>
@@ -70,10 +45,26 @@ const Header = () => {
         <CTA />
       </div>
 
-      {/* style={{ height: "600px", background: "red" }} */}
-      <Canvas style={{ height: window.innerWidth >= 600 ? "600px" : "300px" }}>
-        <Model />
-      </Canvas>
+      {/* Show RocketBoy until 3D model loads */}
+      {showRocketBoy && (
+        <motion.img
+          src={RocketBoy}
+          alt="RocketBoy"
+          style={{
+            // Apply transform to move the RocketBoy image to the right based on the scroll position
+            x: scrollY, // Animate the x position
+            height: window.innerWidth >= 600 ? "600px" : "300px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center", // Center horizontally
+          }}
+          animate={{
+            y: [20, -40, 20],
+            rotate: [0, 0, 0],
+            transition: { repeat: Infinity, duration: 5 },
+          }}
+        />
+      )}
     </header>
   );
 };
