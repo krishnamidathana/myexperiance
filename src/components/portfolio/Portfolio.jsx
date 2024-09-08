@@ -12,7 +12,7 @@ import atomicblog from "../../assets/atomicblog.png";
 import bmicalc from "../../assets/bmicalc.png";
 import classyweather from "../../assets/classyweather.png";
 import faraway from "../../assets/faraway.png";
-
+import fireCrewApp from "../../assets/fireCrewApp.jpeg";
 import movieguide from "../../assets/movieguide.png";
 import tempconvertor from "../../assets/tempconvertor.png";
 import crossgrid from "../../assets/crossgrid.png";
@@ -44,6 +44,23 @@ const Portfolio = () => {
   const [activeTab, setActiveTab] = useState("reactJs");
   const [projectsToShow, setProjectsToShow] = useState(6);
   const [allProjects, setAllProjects] = useState([]);
+
+  const reactNativeProjects = useMemo(
+    () => [
+      // ... (Your existing HTML projects)
+      {
+        id: 1,
+        title: "Fire Crew App (Full-stack)",
+        img: fireCrewApp,
+        description:
+          "Implemented a payment gateway for subscriptions and real-time data synchronization. Enabled QR code generation for extinguisher management. Allowed team creation and collaboration. Developed PDF and Excel report generation features.",
+        technologies: "React Native | NodeJs,MongoDB,ExpressJs",
+        link: "https://www.firecrew.in/",
+        github: "https://indusapp.store/g4s0og5v",
+      },
+    ],
+    []
+  );
 
   const reactJsProjects = useMemo(
     () => [
@@ -434,6 +451,9 @@ const Portfolio = () => {
     // Combine all project arrays based on the activeTab
     let combinedProjects = [];
     switch (activeTab) {
+      case "reactNative":
+        combinedProjects = reactNativeProjects;
+        break;
       case "reactJs":
         combinedProjects = reactJsProjects;
         break;
@@ -450,7 +470,13 @@ const Portfolio = () => {
     // Set all projects and initial projects to show
     setAllProjects(combinedProjects);
     setProjectsToShow(6); // Initial number of projects to show
-  }, [activeTab, htmlProjects, javascriptProjects, reactJsProjects]);
+  }, [
+    activeTab,
+    htmlProjects,
+    javascriptProjects,
+    reactJsProjects,
+    reactNativeProjects,
+  ]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -468,6 +494,12 @@ const Portfolio = () => {
 
       {/* Tab Navigation */}
       <div className="portfolio__tabs">
+        <button
+          className={activeTab === "reactNative" ? "active" : ""}
+          onClick={() => handleTabChange("reactNative")}
+        >
+          React Native
+        </button>
         <button
           className={activeTab === "reactJs" ? "active" : ""}
           onClick={() => handleTabChange("reactJs")}
@@ -506,7 +538,7 @@ const Portfolio = () => {
                 className="btn"
                 rel="noreferrer"
               >
-                GitHub
+                {activeTab === "reactNative" ? "App Link" : "GitHub"}
               </a>
               <a
                 href={pro.link}
