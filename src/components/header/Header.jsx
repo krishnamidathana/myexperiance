@@ -39,7 +39,7 @@ const Header = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
         >
-          Full-stack Developer
+          MERN Stack Developer
         </motion.h2>
 
         <CTA />
